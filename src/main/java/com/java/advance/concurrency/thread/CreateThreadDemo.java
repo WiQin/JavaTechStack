@@ -15,20 +15,20 @@ public class CreateThreadDemo {
         Thread thread = new Thread(){
             @Override
             public void run() {
-                System.out.println("");
+                System.out.println("extends Thread");
             }
         };
 
         Thread thread1 = new Thread(new Runnable() {
             public void run() {
-                System.out.println();
+                System.out.println("implements runnable");
             }
         });
         
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future future = executor.submit(new Callable() {
             public String call() throws Exception {
-                return "";
+                return "implements runnable";
             }
         });
 
