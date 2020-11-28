@@ -8,3 +8,5 @@ micro/dubbo/dubbo-consumer/target/
 micro/dubbo/dubbo-provider/target/
 
 micro/micro-api/target/
+
+java/target/classes/
