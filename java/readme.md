@@ -96,6 +96,8 @@ JMM提供了具体的规则，我么可以根据规则去推论跨线程的内�
 作用域：方法和代码块  
 锁的重入性，即在同一锁程中，线程不需要再次获取同一把锁。Synchronized先天具有重入性。每个对象拥有一个计数器，当线程获取该对象锁后，计数器就会加一，释放锁后就会将计数器减一。
 
+##CAS
+
 ##3.2 volatile  
 线程对volatile变量的修改会立刻被其他线程所感知，即不会出现数据脏读的现象，从而保证数据的“可见性”。  
 被volatile修饰的变量能够保证每个线程能够获取该变量的最新值，从而避免出现数据脏读的现象。
@@ -129,7 +131,69 @@ java内存模型中定义了8中操作都是原子的，不可再分的。
 
     synchronized: 具有原子性，有序性和可见性； volatile：具有有序性和可见性
                            
+##Lock体系
+###lock  
+提供与synchronized一样的锁功能，拥有锁获取和释放的显示操作，可中断式获取锁和超时获取锁等，使用方式：<br/>
+~~~java_holder_method_tree
+Lock lock = new ReentrantLock();
+lock.lock();
+try{
+	.......
+}finally{
+	lock.unlock();
+}
+~~~
+ synchronized同步块执行完成或者遇到异常时锁会自动释放，而lock必须调用unlock()方法释放锁，因此习惯在finally代码块中释放锁  
+ 
+###AQS  同步器
+AQS是构建锁和其他同步组件的基础框架，其他自定义内部组件会声明一个继承AbstractQueuedSynchronizer（AQS）了的静态内部类  
+同步器自身不实现任何同步接口，而是定义了若干同步状态的获取和释放方法来供自定义同步组件使用  <br/>
 
+锁和同步器的关系：
+锁是面向使用者，定义了使用者与锁交互的接口，隐藏了实现细节；<br/>
+同步器是面向锁的实现者，它简化了锁的实现方式，屏蔽了同步状态的管理，线程的排队，等待和唤醒等操作  
+
+同步组件（这里不仅仅值锁，还包括CountDownLatch等）的实现依赖于同步器AQS，在同步组件实现中，使用AQS的方式被推荐定义继承AQS的静态内存类；<br/>
+AQS采用模板方法进行设计，AQS的protected修饰的方法需要由继承AQS的子类进行重写实现，当调用AQS的子类的方法时就会调用被重写的方法；<br/>
+AQS负责同步状态的管理，线程的排队，等待和唤醒这些底层操作，而Lock等同步组件主要专注于实现同步语义；<br/>
+在重写AQS的方式时，使用AQS提供的getState(),setState(),compareAndSetState()方法进行修改同步状态
+
+核心：同步队列，独占式锁，共享式锁  
+独占式锁： 
+void acquire(int arg) 独占式获取同步状态，如果获取失败则插入同步队列进行等待；
+void acquireInterruptibly(int arg) 与acquire()相同，但在同步队列中进行等待时可以检测中断  
+boolean tryAcquireNanos(int arg,long nanosTimeout) 超时等待，在超时时间内没有获得同步状态返回false  
+boolean release(int arg) 释放同步状态，唤醒同步队列的下一个节点  
+共享式锁：  
+void acquireShared(int arg) 共享式获取同步状态，与独占式的区别在于同一时刻有多个线程获取同步状态  
+void acquireSharedInterruptibly(int arg) 响应中断  
+boolean tryAcquireShareNanos(int arg,long nanosTimeout) 超时等待；  
+boolean releaseShared(int arg)  共享式释放同步状态  
+
+####同步队列  
+当共享资源被某个线程占有，其他请求资源的线程会被阻塞，从而进入同步队列  
+AQS的同步队列通过链式方式实现，通过双向队列实现
+~~~java_holder_method_tree
+static final Class Node{
+    volatile int waitStatus;//节点状态
+    volatile Node prev;//当前节点或线程的前驱节点
+    volatile Node next;//当前节点或线程的后继节点
+    volatile Thread thread;//加入同步队列的线程引用
+    Node nextWaiter;//等待队列中的下一节点
+}
+~~~
+
+节点下的状态：
+    
+    int CANCELLED = 1；//节点从同步队列中取消
+    int SIGNAL = -1;//后继节点的线程处于等待状态，如果当前节点释放同步状态会通知后继节点，使得后继节点的线程能够运行
+    int CONDITION = -2;//当前节点进入等待队列中  
+    int PROPAGATE = -3；//表示下一次共享式同步状态获取将会无条件传播下去
+    int INITIAL = 0;//初始状态
+    
+AQS通过头尾指针来管理同步队列
+
+####独占锁  
 
 
     
