@@ -195,5 +195,162 @@ AQS通过头尾指针来管理同步队列
 
 ####独占锁  
 
+####独占锁的获取（acquire）
+   lock()方法会获取独占式锁，调用失败则将当前线程加入同步队列，成功则线程执行。  
+   zxhuanglock方法实际上调用AQS的acquire()方法
+   
+   ~~~java_holder_method_tree
+   public final void acquire(int arg) {
+            //1.先看同步状态是否获取成功，如果成功则方法结束返回
+            //2.若失败则先调用addWaiter()方法再调用acquireQueued()方法
+           if (!tryAcquire(arg) &&
+               acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+               selfInterrupt();
+       }
+   
+   ~~~
+1.获取同步状态失败，入队操作<br/>
+线程获取独占式锁失败后会将当前线程加入到同步队列--addWaiter()方法
+   ~~~java_holder_method_tree
+   private Node addWaiter(Node mode) {
+            // 1. 将当前线程构建成Node类型
+           Node node = new Node(Thread.currentThread(), mode);
+           // Try the fast path of enq; backup to full enq on failure
+           Node pred = tail;
+           if (pred != null) {
+                //2.2 当前节点为节点不为null,说明队列中有等待线程
+                // 当前节点采用尾插入的方式插入同步队列中
+                //如果compareAndSetTail()为false则执行到enq()自旋进行再次尝试
+                //enq()源码解析见下方代码
+               node.prev = pred;
+               if (compareAndSetTail(pred, node)) {
+                   pred.next = node;
+                   return node;
+               }
+           }
+           // 2.1. 当前同步队列尾节点为null，说明当前线程是第一个加入同步队列进行等待的线程，调用enq()方法插入
+           enq(node);
+           return node;
+       }
+   ~~~
+   
+   ~~~java_holder_method_tree
+   private Node enq(final Node node) {
+           for (;;) {
+               Node t = tail;
+               //1.尾节点为空。即同步队列没有等待线程时，会创建头节点
+               if (t == null) { // Must initialize
+               //1.2 带头节点的链式存储结构会在入队和出队时获得更大的便捷性
+               //这个时候队列必须进行初始化（new Node()）
+                   if (compareAndSetHead(new Node()))
+                       tail = head;
+               } else {
+               //2.尾节点不为空，即调用addWaiter().compareAndSetTail()失败会走到这里
+               //2.2 compareAndSetTail(t, node)方法会利用CAS操作设置尾节点
+               //2.3 如果CAS操作失败会在for (;;)for死循环中不断尝试，直至成功return返回为止
+                   node.prev = t;
+                   if (compareAndSetTail(t, node)) {
+                       t.next = node;
+                       return t;
+                   }
+               }
+           }
+       }
+       
+    enq()方法总结：
+    1.在当前线程是第一个加入同步队列时，调用compareAndSetHead(new Node())方法，完成链式队列的头结点的初始化；
+    2.自旋不断尝试CAS尾插入节点直至成功为止。
+   ~~~
+入队后同步队列中线程如何获取独占式锁？--- acquireQueued()  排队获取锁 
+
+~~~java_holder_method_tree
+    final boolean acquireQueued(final Node node, int arg) {
+            boolean failed = true;
+            try {
+                boolean interrupted = false;
+                //自旋
+                for (;;) {
+                //1.获取当前节点的前驱节点
+                    final Node p = node.predecessor();
+                    //2.如果前驱节点是头节点 并且成功获取独占式锁
+                    if (p == head && tryAcquire(arg)) {
+                        //2.1将队列头指针指向当前节点
+                        setHead(node);
+                        //2.2 释放前驱节点
+                        p.next = null; // help GC
+                        //当前借钱指向的线程能够获得锁
+                        failed = false;
+                        return interrupted;
+                    }
+                    //3.获取锁失败，线程进入等待状态等待获取独占式锁
+                    if (shouldParkAfterFailedAcquire(p, node) &&
+                        parkAndCheckInterrupt())
+                        interrupted = true;
+                }
+            } finally {
+                if (failed)
+                    cancelAcquire(node);
+            }
+        }
+~~~ 
+
+2.获取锁成功，出队操作<br/>
+出队逻辑：<br/>
+将队列头节点引用指向当前节点，并释放当前节点的前驱节点，即上面代码2操作  
+~~~java_holder_method_tree
+    setHead(node);
+    p.next = null; // help GC
+    failed = false;
+    return interrupted;
+~~~  
+setHead()方法：
+~~~java_holder_method_tree
+    head = node;
+    node.thread = null;
+    node.next = null;
+~~~  
+如果获取锁失败，则调用shouldParkAfterFailedAcquire()和parkAndCheckInterrupt()
+~~~java_holder_method_tree
+    private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
+            int ws = pred.waitStatus;
+            if (ws == Node.SIGNAL)
+                /*
+                 * This node has already set status asking a release
+                 * to signal it, so it can safely park.
+                 */
+                return true;
+            if (ws > 0) {
+                /*
+                 * Predecessor was cancelled. Skip over predecessors and
+                 * indicate retry.
+                 */
+                do {
+                    node.prev = pred = pred.prev;
+                } while (pred.waitStatus > 0);
+                pred.next = node;
+            } else {
+                /*
+                 * waitStatus must be 0 or PROPAGATE.  Indicate that we
+                 * need a signal, but don't park yet.  Caller will need to
+                 * retry to make sure it cannot acquire before parking.
+                 */
+                compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
+            }
+            return false;
+        }
+~~~
+
+~~~java_holder_method_tree
+    private final boolean parkAndCheckInterrupt() {
+            //使得该线程阻塞
+    		LockSupport.park(this);
+            return Thread.interrupted();
+    }
+~~~
+
+总结：<br/>
+acquireQueued()在自旋过程中主要完成了两件事情：<br/>
+1.如果当前节点的前驱节点是头节点，并且能够获得同步状态的话，当前线程能够获得锁该方法执行结束退出；
+2.获取锁失败的话，先将节点状态设置成SIGNAL，然后调用LookSupport.park方法使得当前线程阻塞。
 
     
