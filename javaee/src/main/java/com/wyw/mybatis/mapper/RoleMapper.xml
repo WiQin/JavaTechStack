@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wyw.mybatis.mapper.RoleDao">
+
+    <resultMap id="roleMap" type="role">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="note" column="note"/>
+    </resultMap>
+
+    <!--开启二级缓存  可以使SqlSession对象间共享相同的缓存++-->
+    <cache/>
+    <insert id="insertRole" parameterType="role" useGeneratedKeys="true" keyProperty="id">
+        insert into t_role(role_name,note) values (#{roleName},#{notes})
+    </insert>
+
+    <delete id="deleteRole" parameterType="long">
+        delete from t_role where id = #{id}
+    </delete>
+
+    <update id="updateRole" parameterType="role">
+        update t_role set role_name = #{roleName}, note = #{notes} where id = #{id}
+    </update>
+
+    <select id="getRole" parameterType="long" resultMap="roleMap">
+        select <include refid="roleColumn"/> from t_role where id = #{id}
+    </select>
+
+    <select id="findRoles" parameterType="string" resultType="role">
+        select
+        <include refid="roleColumn"/>
+        from t_role where role_name like concat('%',#{rolenAME},'%')
+    </select>
+
+    <select id="findRolesByNameAndNotes" resultType="role">
+        select <include refid="roleColumn"/> from t_role where role_name like concat('%',#{roleName},'%')
+        and note like concat('%',#{note},'%')
+    </select>
+
+    <sql id="roleColumn">
+        id,role_name,note
+    </sql>
+</mapper>

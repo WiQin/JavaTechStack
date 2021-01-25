@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--配置-->
+<configuration>
+    <!--属性-->
+    <properties resource="jdbc.properties" />
+    <!--设置-->
+    <settings>
+        <!--自动映射 NONE PARTIAL FULL-->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <!--驼峰命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--类型命名-->
+    <typeAliases>
+        <!--别名-->
+        <typeAlias alias="role" type="com.wyw.mybatis.entity.Role"/>
+    </typeAliases>
+    <!--类型处理器-->
+    <typeHandlers></typeHandlers>
+    <!--对象工厂-->
+    <!--<objectFactory type=""/>-->
+    <!--配置环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.username}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--映射器-->
+    <mappers>
+        <mapper resource="com/wyw/mybatis/mapper/RoleMapper.xml"/>
+    </mappers>
+</configuration>
