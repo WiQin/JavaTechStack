@@ -7,7 +7,7 @@
     <resultMap id="roleMap" type="role">
         <id property="id" column="id"/>
         <result property="roleName" column="role_name"/>
-        <result property="note" column="note"/>
+        <result property="notes" column="note"/>
     </resultMap>
 
     <!--开启二级缓存  可以使SqlSession对象间共享相同的缓存++-->
