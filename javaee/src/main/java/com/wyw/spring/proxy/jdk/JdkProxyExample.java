@@ -33,7 +33,6 @@ public class JdkProxyExample implements InvocationHandler {
      * @return
      * @throws Throwable
      */
-    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("进入代理逻辑方法");
         System.out.println("准备开始调用真实对象逻辑");
