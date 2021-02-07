@@ -106,5 +106,13 @@ digest:
 
 ip:
 
+集群配置：
+Leader选举 
+ ~~~
+ https://zhuanlan.zhihu.com/p/60083015
+ ~~~
+ 
+ 
+
 
     
