@@ -33,24 +33,24 @@ import javax.sql.DataSource;
 @EnableConfigurationProperties(JdbcProperties.class)
 public class JdbcConfig {
 
-    @Value("${jdbc.url}")
-    String url;
-    @Value("${jdbc.driverClassName}")
-    String driverClassName;
-    @Value("${jdbc.username}")
-    String username;
-    @Value("${jdbc.password}")
-    String password;
-
-    @Bean
-    public DataSource dataSource1() {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(url);
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
-    }
+//    @Value("${jdbc.url}")
+//    String url;
+//    @Value("${jdbc.driverClassName}")
+//    String driverClassName;
+//    @Value("${jdbc.username}")
+//    String username;
+//    @Value("${jdbc.password}")
+//    String password;
+//
+//    @Bean
+//    public DataSource dataSource1() {
+//        DruidDataSource dataSource = new DruidDataSource();
+//        dataSource.setUrl(url);
+//        dataSource.setDriverClassName(driverClassName);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//        return dataSource;
+//    }
 
     @Bean
     public DataSource dataSource2(JdbcProperties jdbc) {
@@ -62,11 +62,11 @@ public class JdbcConfig {
         return dataSource;
     }
 
-    @Bean
-    // 声明要注入的属性前缀，SpringBoot会自动把相关属性通过set方法注入到DataSource中
-    @ConfigurationProperties(prefix = "jdbc")
-    public DataSource dataSource3() {
-        DruidDataSource dataSource = new DruidDataSource();
-        return dataSource;
-    }
+//    @Bean
+//    // 声明要注入的属性前缀，SpringBoot会自动把相关属性通过set方法注入到DataSource中
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource dataSource3() {
+//        DruidDataSource dataSource = new DruidDataSource();
+//        return dataSource;
+//    }
 }

@@ -959,7 +959,7 @@ SpringBoot官方并没有提供Mybatis的启动器，不过Mybatis[官网](https
 ```properties
 # mybatis 别名扫描
 mybatis.type-aliases-package=com.heima.pojo
-# mapper.xml文件位置,如果没有映射文件，请注释掉
+mappers
 mybatis.mapper-locations=classpath:mappers/*.xml
 ```
 
