@@ -1,13 +1,13 @@
-package com.java.advance.concurrency.keywords;
+package com.java.advance.concurrency.keywords.synchrinized_1;
 
-public class SynchronizedDemo implements Runnable {
+public class SynchronizedDemo_01 implements Runnable {
     private static int count = 0;
 
 
     public static void main(String[] args) {
 
             for (int i = 0; i < 10; i++) {
-                Thread thread = new Thread(new SynchronizedDemo());
+                Thread thread = new Thread(new SynchronizedDemo_01());
                 thread.start();
             }
 
@@ -23,7 +23,7 @@ public class SynchronizedDemo implements Runnable {
     }
 
     public void  run() {
-        synchronized (SynchronizedDemo.class) {
+        synchronized (SynchronizedDemo_01.class) {
             for (int i = 0; i < 100000; i++) {
                 count++;
             }

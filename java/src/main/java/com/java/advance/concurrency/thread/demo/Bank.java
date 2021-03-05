@@ -54,7 +54,7 @@ public class Bank {
     }
 
     /**
-     * synchronized
+     * synchrinized_1
      * @param from
      * @param to
      * @param amount

@@ -1,6 +1,6 @@
-package com.java.advance.concurrency.keywords;
+package com.java.advance.concurrency.keywords.synchrinized_1;
 
-public class SynchronizedDemo3 {
+public class SynchronizedDemo_03 {
 
     private static Integer i1 = 0;
 
