@@ -25,6 +25,7 @@ public class D02_CreateThread {
 
         //实现Runnable
         Thread thread1 = new Thread(new Runnable() {
+            @Override
             public void run() {
                 System.out.println("implements runnable");
             }
@@ -33,8 +34,9 @@ public class D02_CreateThread {
         //线程池
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future future = executor.submit(new Callable() {
+            @Override
             public String call() throws Exception {
-                return "implements runnable";
+                return "thread pool";
             }
         });
 
