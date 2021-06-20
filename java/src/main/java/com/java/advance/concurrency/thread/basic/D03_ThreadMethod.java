@@ -1,4 +1,4 @@
-package com.java.advance.concurrency.thread;
+package com.java.advance.concurrency.thread.basic;
 
 /**
  * 线程方法

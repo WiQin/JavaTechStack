@@ -1,4 +1,4 @@
-package com.java.advance.concurrency.thread;
+package com.java.advance.concurrency.thread.basic;
 
 public class D04_ThreadState {
 

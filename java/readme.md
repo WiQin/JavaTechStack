@@ -9,7 +9,7 @@
     -->减少上下文切换可以采用无锁并发编程，CAS算法，使用最少的线程和使用协程。  
 2.线程安全  
     多线程编程中最难以把握的就是临界区线程安全问题，稍微不注意就会出现死锁的情况，一旦产生死锁就会造成系统功能不可用。  
-    [com.java.advance.concurrency.thread.DeadLockDemo]
+    [com.java.advance.concurrency.thread.basic.D07_DeadLockDemo]
     
     如何避免死锁：
     1.避免一个线程同时获得多个锁

@@ -1,4 +1,4 @@
-package com.java.advance.concurrency.thread;
+package com.java.advance.concurrency.thread.basic;
 
 /**
  * 死锁测试
@@ -6,7 +6,7 @@ package com.java.advance.concurrency.thread;
  * @author wyw
  * @date 2020/11/26
  */
-public class DeadLockDemo {
+public class D07_DeadLockDemo {
 
     private static final String RESOURCE_A = "a";
     private static final String RESOURCE_B = "b";
