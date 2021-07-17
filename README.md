@@ -5,5 +5,5 @@
 
 ## 目录
 - [首页](README.md)
-* Javas
+* Java
   - [基础](java/readme.md)
