@@ -7,9 +7,14 @@
   <meta name="description" content="征服Java之路">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <style>
+    nav.app-nav li ul {
+      min-width: 100px;
+    }
+  </style>
 </head>
 <body>
-<!--<a href="https://github.com/NotFound9/interviewGuide" target="_blank" class="github-corner"-->
+<!--<a href="https://github.com/WiQin/ConqureJava" target="_blank" class="github-corner"-->
 <!--   aria-label="View source on Github">-->
 <!--  <svg viewBox="0 0 250 250" aria-hidden="true">-->
 <!--    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>-->
@@ -27,8 +32,9 @@
     loadSidebar: '/static/sidebar.md',
     loadNavbar: 'navbar.md',
     mergeNavbar: true,
-    name: 'Insulin',
-    repo: 'kb1000fx/hexo-theme-insulin',
+    name: '征服Java之路',
+    themeColor: '#36bc98',
+    repo: '',
     search: 'auto',
     auto2top: true,
     subMaxLevel: 2,
@@ -37,6 +43,17 @@
     adClient: 'ca-pub-5888225880131847',
     adHeaderSlot: '3949852758',
     adFooterSlot: '2212253348',
+    search: {
+      maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+      noData: '找不到结果',//搜索不到结果时显示
+      paths: 'auto',//自动
+      placeholder: '搜索一下',//搜索框提示
+    },
+    copyCode: {
+      buttonText : '点击复制代码',
+      errorText  : '复制出错',
+      successText: '复制成功'
+    }
   }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
