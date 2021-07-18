@@ -1,4 +1,4 @@
-<!-- 背景色 -->
+<!-- logo -->
 ![logo](image/faces.png)
 
 # 征服Java之路
@@ -9,3 +9,6 @@
 
 [GitHub](https://github.com/WiQin/ConqureJava)
 [Get Started](README.md)
+
+<!-- 背景色 -->
+![color](#3b4c54)
