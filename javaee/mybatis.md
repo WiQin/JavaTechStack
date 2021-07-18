@@ -1,13 +1,13 @@
-#Java EE框架
-##MyBatis
-###核心组件
+# Java EE框架
+## MyBatis
+### 核心组件
 核心组件：
 1.SqlSessionFactoryBuilder(构造器)，根据配置或代码生成SqlSessionFactory  
 2.SqlSessionFactory(工厂接口)，用于生成SqlSession
 3.SqlSession(会话)：一个既可以发送SQL执行返回结果，也可以获取Mapper的接口  
 4.SqlMapper(映射器)：有一个java接口和XML文件构成，需要给出对应的SQL和映射规则，负责发送SQL去执行并返回结果  
 
-###配置
+### 配置
 ~~~xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration> <!--配置-->
@@ -56,23 +56,27 @@
 5.环境配置  
 6.映射器  
 
-###映射器
+### 映射器
 接口+xml文件组成，通过简易的映射规则实现sql语句和java对象的映射  
 配置元素：select update delete insert sql resultMap cache cache-ref  
-####select  
+#### select  
 配置： id parameterType resultType resultMap flushCache useCache  timeout  
 多参传递：使用@Param注解（此时不需指定parameterType）  
 resultMap  
 
-####insert 
+#### insert 
 配置：id parameterType flushCache timeout(超时时间) useGeneratedKeys（是否获取自动生成的主键） keyProperty  keyColumn  
 useGeneratedKeys:插头数据后是否将数据库自动生成的主键id返回给java对象，默认false
 
-####update&delete
-####sql
-定义一条sql的一部分，后买你其他sql引用
+#### update&delete
+#### sql
+定义一条sql的一部分，后面其他sql引用
 
 ####resultMap
 
 ####级联
+
+## Spring
+
+## SpringMVC
     

@@ -1,6 +1,6 @@
-#Dubbo
-##基础知识
-###核心角色
+# Dubbo
+## 基础知识
+### 核心角色
 Dubbo架构核心角色:<br/>
 Registry:**注册中心**,负责服务地址的注册与查找。服务的provider与consumer只在启动时与注册中心交互，注册中心通过长连接感知provider的存在；
 当服务中心宕机时，注册中心会立即推送相关事件通知consumer<br> 
@@ -13,7 +13,7 @@ dubbo://192.168.31.33:20880/com.wyw.micro.api.UserService?anyhost=true&applicati
 1).dubbo://192.168.31.33:20880/com.wyw.micro.api.UserService 协议：//ip:端口/接口
 2).配置的参数
 
-###配置总线  
+### 配置总线  
 每个信息资源在网络上都有唯一的url（统一资源定位符）,而url是dubbo中的一个核心组件，也被称为配置总线  
 Dubbo使用url来统一描述所有对象和配置信息，示例如上。  
 优点：1).方便进行上下文传递，代码更加易读易懂；
