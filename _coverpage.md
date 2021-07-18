@@ -1,5 +1,5 @@
-<!-- logo -->
-![logo](image/faces.png)
+<!-- logo ![logo](image/faces.png)-->
+
 
 # 征服Java之路
 
