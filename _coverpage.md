@@ -1,11 +1,11 @@
 <!-- logo -->
 ![logo](image/faces.png)
 
-# 征服Java之路
+# <font color=#278877>征服Java之路</font>
 
-> 做一个有思想的程序员
+> <font color=#278877>做一个有思想的程序员</font>
 
-* 流火且七
+* <font color=#278877>流火且七</font>
 
 [GitHub](https://github.com/WiQin/ConqureJava)
 [Get Started](README.md)
