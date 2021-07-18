@@ -3,7 +3,7 @@
 ***写在开始前的话***  
 ***做一个有思想的程序员(持续更新中...)***  
 
-阅读地址：https://winqin.github.io/ConqureJava  
+阅读地址：https://wiqin.github.io/ConqureJava  
 Github项目主页：https://github.com/WiQin/ConqureJava
 
 ## 目录
