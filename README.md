@@ -1,11 +1,5 @@
 #  The road to Conquering Java  
 
-***写在开始前的话***  
-***做一个有思想的程序员(持续更新中...)***  
-
-阅读地址：https://wiqin.github.io/ConqureJava  
-Github项目主页：https://github.com/WiQin/ConqureJava
-
 ## 目录
 * 数据结构
   - [知识体系图](https://www.processon.com/mindmap/609aa0125653bb1477477992)
