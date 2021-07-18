@@ -1,4 +1,4 @@
-#  The road to Conquering Java   <!-- {docsify-ignore-all} -->
+#  The road to conquering Java   <!-- {docsify-ignore-all} -->
 
 ## 目录
 * 数据结构
