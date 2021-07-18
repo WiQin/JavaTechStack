@@ -9,4 +9,3 @@
 [GitHub](https://github.com/WiQin/ConqureJava)
 [Get Started](#quick-start)
 
-<!-- 背景色 ![color](#9D9D9D)-->
