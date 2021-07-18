@@ -1,5 +1,5 @@
 <!-- logo -->
-![logo](image/faces.png)
+![logo](image/logo.png)
 
 # <font color=#278877>征服Java之路</font>
 
