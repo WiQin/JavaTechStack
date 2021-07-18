@@ -4,7 +4,7 @@
 ***做一个有思想的程序员(持续更新中...)***  
 
 阅读地址：https://winqin.github.io/ConqureJava  
-Github项目主页：https://github.com/NotFound9/interviewGuide
+Github项目主页：https://github.com/WiQin/ConqureJava
 
 ## 目录
 * 数据结构
