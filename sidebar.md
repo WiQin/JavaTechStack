@@ -15,4 +15,7 @@
 * JVM
   - [知识体系图](https://www.processon.com/mindmap/606de1026376893ece7b1d43)
 * [面试题总结](https://www.processon.com/mindmap/6069d0781e08534321fa9017)
+* 其他项目
+  - [LeetCode](https://github.com/WiQin/LeeCode)
+  - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
   
