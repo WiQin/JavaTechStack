@@ -23,3 +23,9 @@
 * 其他项目
   - [LeetCode](https://github.com/WiQin/LeeCode)
   - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
+
+## 修订记录
+|时间|作者|修订内容|
+|------|------|:------:|
+|2021/07/19|流火且七|新增项目主页|
+|2021/07/20|流火且七|排版;新增mq及其他项目链接|
