@@ -7,7 +7,8 @@ package com.wyw.enums;
  */
 public enum ExchangeEnum {
 
-    LOG("log","日志记录","fanout"),
+    FANOOUT_INFORM("exchange_fanout_form","fanout交换机","fanout"),
+    DIRECT_INFORM("exchange_direct_form","direct交换机","fanout"),
     UNKNOWN("unkonwn","未知","unknown");
 
 
