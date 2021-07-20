@@ -28,22 +28,19 @@ RabbitMQ基本结构:
 1. 安装[Erlang](https://www.erlang.org/downloads)  
 2. 配置Erlang环境变量   
     2.1 新增ERLANG_HOME环境变量，值为Erlang安装目录  
-    ![image](../../static/image/mq/rabbit-mq/erlang.png)
-    2.2 Path变量下追加%ERLANG_HOME%\bin(指向Erlang安装目录下bin文件夹)
-    ![image](../../static/image/mq/rabbit-mq/erlang_path.png)
-    2.3 验证是否安装成功：命令行下执行erl -version
-    ![image](../../static/image/mq/rabbit-mq/erlang_verify.png)
+    ![image](../../static/image/mq/rabbit-mq/erlang.png)  
+    2.2 Path变量下追加%ERLANG_HOME%\bin(指向Erlang安装目录下bin文件夹)  
+    ![image](../../static/image/mq/rabbit-mq/erlang_path.png)  
+    2.3 验证是否安装成功：命令行下执行erl -version  
+    ![image](../../static/image/mq/rabbit-mq/erlang_verify.png)  
 3. 安装[RabbitMQServer](https://www.rabbitmq.com/download.html) (选择安装目录下无脑下一步即可)
 4. 安装RrabbitMQ可视化插件  
     4.1 RabbitMQ安装成功后正常情况下会自动启动，如果启动失败则执行sbin目录下rabbitmq-server.bat启动  
     4.2 sbin目录下命令行模式执行rabbitmq-plugins enable rabbitmq_management  
-    ![image](../../static/image/mq/rabbit-mq/rabbitmq-plugin.png)
-    4.3 浏览器访问地址http://localhost:15672/ 即可登录，用户名/密码：guest/guest    
-
-
-    ps:
-    1. Erlang与RabbitMQ安装版本需对应，否则RabbitMQ启动会有问题，对应版本看 [这里](https://blog.csdn.net/weixin_39802680/article/details/110307169) 或自行百度  
-    2. Erlang官网访问比较慢，如果没有好的镜像环境下载后建议保存安装包
+    ![image](../../static/image/mq/rabbit-mq/rabbitmq-plugin.png)  
+    4.3 浏览器访问地址http://localhost:15672/ 即可登录，用户名/密码：guest/guest     
+    * Erlang与RabbitMQ安装版本需对应，否则RabbitMQ启动会有问题，对应版本看 [这里](https://blog.csdn.net/weixin_39802680/article/details/110307169) 或自行百度  
+    * Erlang官网访问比较慢，如果没有好的镜像环境下载后建议保存安装包  
     
 #### 卸载
 1. 打开Windows任务管理器。
