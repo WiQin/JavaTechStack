@@ -39,7 +39,7 @@ RabbitMQ基本结构:
     4.2 sbin目录下命令行模式执行rabbitmq-plugins enable rabbitmq_management  
     ![image](../../static/image/mq/rabbit-mq/rabbitmq-plugin.png)  
     4.3 浏览器访问地址http://localhost:15672/ 即可登录，用户名/密码：guest/guest     
-    * Erlang与RabbitMQ安装版本需对应，否则RabbitMQ启动会有问题，对应版本看 [这里](https://blog.csdn.net/weixin_39802680/article/details/110307169) 或自行百度  
+    * Erlang与RabbitMQ安装版本需对应，否则RabbitMQ启动会有问题，对应版本看 [这里](https://www.rabbitmq.com/which-erlang.html) 或自行百度  
     * Erlang官网访问比较慢，如果没有好的镜像环境下载后建议保存安装包  
     
 #### 卸载
