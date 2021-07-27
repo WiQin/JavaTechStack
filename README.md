@@ -28,9 +28,5 @@
 * 其他项目
   - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
   
-[思维导图](static/image/mindMapping/框架.xmind  ':include')
-
-
-
 >注：本页面通过docsify生成，具体使用方法请参考[官网](https://docsify.js.org/#/zh-cn/)
 
