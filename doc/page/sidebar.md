@@ -1,6 +1,6 @@
 * [首页](README.md)
 * 数据结构
-  - [知识体系图](https://www.processon.com/mindmap/609aa0125653bb1477477992)
+  - [总览](doc/data_structure/data_structure.md)
 * 算法
   - [LeetCode](leetcode/leetcode.md)
 * Java
@@ -19,8 +19,8 @@
 * 其他中间件
   - [EalsticSearch](elastic-search/elasticsearch.md)
 * JVM 
-  - [知识体系图](https://www.processon.com/mindmap/606de1026376893ece7b1d43)
-* [面试题总结](https://www.processon.com/mindmap/6069d0781e08534321fa9017)
+  - [总览](doc/jvm/jvm.md)
+* [面试题总结](doc/interview/interview.md)
 * 其他项目
   - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
   
