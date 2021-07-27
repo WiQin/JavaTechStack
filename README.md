@@ -1,5 +1,7 @@
 #  Java Tech Stack   <!-- {docsify-ignore-all} -->
 
+> 整理自己的技术栈和项目，强大自身
+
 ## 目录
 * 数据结构
   - [知识体系图](https://www.processon.com/mindmap/609aa0125653bb1477477992)
@@ -25,6 +27,8 @@
 * [面试题总结](https://www.processon.com/mindmap/6069d0781e08534321fa9017)
 * 其他项目
   - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
+  
+[思维导图](static/image/mindMapping/框架.xmind  ':include')
 
 
 
