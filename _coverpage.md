@@ -1,5 +1,5 @@
 <!-- logo -->
-![logo](static/image/logo.png)
+<!-- ![logo](static/image/logo.png) -->
 
 # <font color=#278877>Java技术栈</font>
 
