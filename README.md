@@ -1,7 +1,5 @@
 #  Java Tech Stack   <!-- {docsify-ignore-all} -->
 
-> 整理自己的技术栈和项目，强大自身
-
 ## 目录
 * 数据结构
   - [知识体系图](https://www.processon.com/mindmap/609aa0125653bb1477477992)
