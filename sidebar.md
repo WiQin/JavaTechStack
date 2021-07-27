@@ -1,6 +1,8 @@
 * [首页](README.md)
 * 数据结构
   - [知识体系图](https://www.processon.com/mindmap/609aa0125653bb1477477992)
+* 算法
+  - [LeetCode](leetcode/leetcode.md)
 * Java
   - [并发专题](java/concurrency.md)
 * JavaEE
@@ -15,10 +17,9 @@
   - [概述](mq/mq.md)
   - [RabbitMQ](mq/rabbit-mq/rabbitmq.md)
 * 其他中间件
-* JVM
+* JVM 
   - [知识体系图](https://www.processon.com/mindmap/606de1026376893ece7b1d43)
 * [面试题总结](https://www.processon.com/mindmap/6069d0781e08534321fa9017)
 * 其他项目
-  - [LeetCode](https://github.com/WiQin/LeeCode)
   - [Spring源码学习](https://github.com/WiQin/spring-framework/tree/5.2.x)
   
