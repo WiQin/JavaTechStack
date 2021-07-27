@@ -5,7 +5,7 @@
 
 > <font color=#278877>做一个有思想的程序员</font>
 
-[GitHub](https://github.com/WiQin/ConqureJava)
+[GitHub](https://github.com/WiQin/JavaTechStack)
 [Get Started](README.md)
 
 <!-- 背景色 -->
