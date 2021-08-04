@@ -2,7 +2,8 @@
 * 数据结构
   - [总览](doc/data_structure/data_structure.md)
 * 算法
-  - [LeetCode](leetcode/leetcode.md)
+  - [手撕LeetCode](leetcode/leetcode.md)
+* [设计模式](java/design_pattern.md)
 * Java
   - [并发专题](java/concurrency.md)
 * JavaEE
