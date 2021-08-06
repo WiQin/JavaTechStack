@@ -9,7 +9,6 @@ import com.java.advance.designpattern.strategy.dynamic.service.QuackBehavior;
  * @date 2021/8/5 0005 22:24
  */
 public class Quack implements QuackBehavior {
-
     @Override
     public void quack() {
         System.out.println("gua gua");

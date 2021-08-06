@@ -15,9 +15,6 @@ public abstract class SuperDuck {
 
     protected QuackBehavior quackBehavior;
 
-    public SuperDuck() {
-    }
-
     //抽象方法，交由子类去实现
     protected abstract void display();
 

@@ -11,6 +11,6 @@ import com.java.advance.designpattern.strategy.dynamic.service.FlyBehavior;
 public class FlyNoWay implements FlyBehavior {
     @Override
     public void fly() {
-        System.out.println("no way");
+        System.out.println("No way,you can't fly");
     }
 }

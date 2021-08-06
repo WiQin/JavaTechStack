@@ -7,6 +7,5 @@ package com.java.advance.designpattern.strategy.dynamic.service;
  * @date 2021/8/5 0005 22:20
  */
 public interface QuackBehavior {
-
     void quack();
 }
