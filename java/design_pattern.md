@@ -333,7 +333,7 @@ public class WeatherSubjectTest {
     }
 }
 ~~~
-!*weather_subjest_test*(../static/image/java/design_pattern/obsever/weather_subjest_test.png)
+![weather_subjest_test](../static/image/java/design_pattern/obsever/weather_subjest_test.png)
 
 >至此，一个简单的观察者模式就写完了，那么这样就好了吗，当然不是，程序优化的路时永无止境的  
 >让我们研究下这个程序还有什么问题
