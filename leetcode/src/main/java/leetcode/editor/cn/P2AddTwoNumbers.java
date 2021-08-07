@@ -69,10 +69,13 @@ public class P2AddTwoNumbers {
      */
     /**
      * 各位相加，大于10，和取模，上一位进1
+     * 时间复杂度：O(max(m,n))
+     * 空间复杂度：O(1)
      */
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             ListNode head = null, tail = null;
+            //进位初始化为0
             int carry = 0;
             while (l1 != null || l2 != null) {
                 int n1 = l1 != null ? l1.val : 0;
