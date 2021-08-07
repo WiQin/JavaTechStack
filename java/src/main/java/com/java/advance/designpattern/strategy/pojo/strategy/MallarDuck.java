@@ -1,7 +1,7 @@
 package com.java.advance.designpattern.strategy.pojo.strategy;
 
-import com.java.advance.designpattern.strategy.dynamic.FlyWithWings;
-import com.java.advance.designpattern.strategy.dynamic.Spueak;
+import com.java.advance.designpattern.strategy.dynamic.service.impl.FlyWithWings;
+import com.java.advance.designpattern.strategy.dynamic.service.impl.Spueak;
 
 /**
  * @author wangyw

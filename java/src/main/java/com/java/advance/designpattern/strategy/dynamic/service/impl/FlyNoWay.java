@@ -1,4 +1,4 @@
-package com.java.advance.designpattern.strategy.dynamic;
+package com.java.advance.designpattern.strategy.dynamic.service.impl;
 
 import com.java.advance.designpattern.strategy.dynamic.service.FlyBehavior;
 

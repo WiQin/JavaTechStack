@@ -21,8 +21,8 @@ public class WeatherData {
         Double pressure = getPressure();
 
         //调用相应方法更新当前状况,天气统计，天气预报  很low
-        currcuentConditionsDisplay.update(temperature,humidity,pressure);
-        statisticsDisplay.update(temperature,humidity,pressure);
-        forecastDisplay.update(temperature,humidity,pressure);
+//        currcuentConditionsDisplay.update(temperature,humidity,pressure);
+//        statisticsDisplay.update(temperature,humidity,pressure);
+//        forecastDisplay.update(temperature,humidity,pressure);
     }
 }
