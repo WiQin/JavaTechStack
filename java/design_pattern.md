@@ -121,7 +121,7 @@ public class MiniDuckSimular {
 ~~~
 
 >我们学到了哪些设计原则：
->1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起
+>1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起（封装变化）
 >>   * 如果每次需求一来，就会使某方面代码发生变化，那么就需要抽离了
 >>   * 当涉及"维护"时，为了服用而使用继承可能结局并不完美
 >2. 针对接口编程，而不是针对实现编程  
@@ -205,7 +205,7 @@ public interface Obsever {
 
 改变主题或观察者其中一方，并不会影响另一方。因为两者是松耦合的，所以只要他们之间的接口仍被遵守，我们就可以自由地改变他们。
 
->这里引入了另一个程序设计原则：  
+>这里学到了另一个程序设计原则：  
 >* 为了交互对象之间的松耦合设计而努力  
 >   * 松耦合的设计之所以能让我们建立有弹性的OO系统，能够应对变化，是因为对象之间的互相依赖降到了最低。
 
@@ -348,7 +348,99 @@ emm...这就像甜棕和咸棕之争，这么多年来一直没有结果，毕�
 难道我们需要开发两套模板来满足平常的工作需要吗，当然...不是，其实在Java API中已经内置了观察者模式，支持两种类型的数据更新
 
 >使用Java内置的观察者模式
+- 首先需要了解两个java内置类/接口 *java.util.Observable*   *java.util.Observer*
+    - Observable，可观察者，可以追踪所有的观察者，并通知他们；可变的数据对象直接继承它就行
+        - 工作流程：  
+            a. 先调用*setChanged*方法，标记数据对象状态已被改变  
+            b. 调用*notifyObservers()* 或者 *notifyObservers(Object arg)* 方法通知观察者
+        - *setChanged*是干什么的呢？
+            - 用来标记状态已改变，好让*notifyObservers()* 知道当它被调用时应该更新观察者（可以看下*notifyObservers*源码）
+            - 通过这样的方式让更新观察者时有更多的弹性，可以选择在适当的时候通知观察者，到时候重写下*setChanged*方法就好，是不是很人性
+    - Observer，观察者接口，和我们之前自己实现的接口作用一致,不同的是方法多了两个参数，observable和数据对象（就是 *notifyObservers(Object arg)* 传的arg）
+        - 如果想通过”推“的方式通知观察者，就可以把数据当作数据对象传到 *notifyObservers(Object arg)* 中，否则观察者就得从可观察对象中”拉“数据
+- 看到这里基本知道该怎么做了吧
+    - 定义*WeatherObservable*，继承Observable
+        - 这里构造器就不需要初始化观察者列表了，也不需要手动管理观察者列表了，为什么呢，因为父类里有了
+        - *measurementsChanged*里调用*notifyObservers()*，没有传参数，所以是通过”拉“的方式实现数据更新（要先调用*setChanged()* 方法）
+        - 定义相应的*getXXX()* 方法，”拉“的方式必需
+    - 定义*CurrentConditionsObserver*，实现*Observer*, *DisplayElement*
+        - 构造器调用*observable.addObserver(this)*，把*CurrentConditionsObserver*注册为观察者
+        - 实现*update()* 方法
+        - 实现*disPlay()* 方法
+~~~java
+public class WeatherObservable extends Observable {
+    //气象数据  温度，湿度，气压
+    private Double temperature;
+    private Double humidity;
+    private Double pressure;
 
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
+    }
+
+    /**
+     * 模拟获取气象信息方法
+     * @param temperature
+     * @param humidity
+     * @param pressure
+     */
+    public void setMeasurements(Double temperature,Double humidity,Double pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        measurementsChanged();
+    }
+
+    //当使用”拉“的方式更新数据时，需要用到get方法
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public Double getHumidity() {
+        return humidity;
+    }
+
+    public Double getPressure() {
+        return pressure;
+    }
+}
+~~~
+
+~~~java
+public class CurrentConditionsObserver implements Observer, DisplayElement {
+    private Double temperature;
+    private Double humidity;
+    private Double pressure;
+
+    public CurrentConditionsObserver(Observable observable) {
+        observable.addObserver(this);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof WeatherObservable) {
+            WeatherObservable weatherObservable = (WeatherObservable) o;
+            this.temperature = weatherObservable.getTemperature();
+            this.humidity = weatherObservable.getHumidity();
+            this.pressure = weatherObservable.getPressure();
+            display();
+        }
+    }
+
+    @Override
+    public void display() {
+        System.out.println("CurrentConditions-temperature:"+temperature+"humidity:"+humidity+"pressure:"+pressure);
+    }
+}
+~~~
+
+>看到这里是不是觉得真香，然而并不是
+>- 看下*Observable.notifyObservers()* 源码，你会发现它通知观察者的次序和我们之前自定义的不一样，是倒着来的
+>   - 所以，**不要依赖于观察者被通知的次序！！！** 如果我们的业务逻辑依赖于通知次序，那肯定会出问题
+>- Observable是一个类而非接口，如果你还想继承别的类那是不可能的，这就限制了Observable的复用潜力  
+>
+>所以是自己实现还是使用Java内置模板，就看具体场景了
 
 
 
