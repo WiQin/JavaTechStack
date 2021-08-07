@@ -367,6 +367,7 @@ emm...这就像甜棕和咸棕之争，这么多年来一直没有结果，毕�
         - 构造器调用*observable.addObserver(this)*，把*CurrentConditionsObserver*注册为观察者
         - 实现*update()* 方法
         - 实现*disPlay()* 方法 
+
 ~~~java
 public class WeatherObservable extends Observable {
     //气象数据  温度，湿度，气压
