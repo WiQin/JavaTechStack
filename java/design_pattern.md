@@ -557,7 +557,8 @@ public class DCLSingleton {
 }
 ~~~
 
-## 命令模式
+## 命令模式（Command Pattern）
+封装方法调用
 
 ## 适配器模式
 
