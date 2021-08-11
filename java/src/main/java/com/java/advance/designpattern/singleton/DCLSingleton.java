@@ -8,9 +8,7 @@ public class DCLSingleton {
 
     private volatile static DCLSingleton instance = null;
 
-    private DCLSingleton() {
-
-    }
+    private DCLSingleton() {}
 
     public static DCLSingleton getInstance() {
         if (instance == null) {

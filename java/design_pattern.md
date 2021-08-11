@@ -486,14 +486,76 @@ public abstract class Beverage {
 接下来我们要做的就是把上面的设计模式套进咖啡系统中：
 ![caffee_uml.png](../static/image/java/design_pattern/decorator/caffee_uml.png)
 
->好了，接下来要做的就是把上卖弄的一堆理论变成真正的代码
+>好了，接下来要做的就是把上面的一堆理论变成真正的代码
 >1. 首先，我们不需要改变原有的*Beverage*基类，我们需要做的是实现装饰者类，也就是配料抽象类*CondimentDecorator*
 >...
 
 ## 工厂模式（Factory Pattern）
 
 
-## 单例模式
+## 单例模式（Singleton Pattern）  
+>顾名思义，每个类只有一个实例对象，并提供一个全局访问点
+
+>怎么做呢？相信我们之前或多或少都接触过
+>1. 构造器私有化
+>2.提供公共静态方法获取实例对象
+
+~~~java
+public class BaseSingleton {
+    private static BaseSingleton instance = null;
+    
+    private BaseSingleton() {}
+
+    public BaseSingleton getInstance() {
+        if (Objects.isNull(instance)) {
+            instance = new BaseSingleton();
+        }
+        return instance;
+    }
+}
+~~~
+
+但是实际的项目不会是这么简单的，我们经常会涉及到多线程的处理逻辑，这会导致我们上面的单例模式不是那么靠谱
+理所当然的，我们也能想到解决的办法：
+
+~~~java
+public class SynchronizedSingleton {
+    private static SynchronizedSingleton instance = null;
+
+    private SynchronizedSingleton() {}
+
+    public synchronized SynchronizedSingleton getInstance() {
+        if (Objects.isNull(instance)) {
+            instance = new SynchronizedSingleton();
+        }
+        return instance;
+    }
+}
+~~~
+
+但是这样的方式可能会造成程序性能的浪费，毕竟我们只有在第一次创建实例时才需要进行检查，该如何改善呢？
+1.使用饿汉式方法创建单例对象，也是就在初始化静态变量时就创建对象，依赖JVM特性保证其线程安全
+2.用“双重检查加锁”，在getInstance中减少同步
+
+~~~java
+public class DCLSingleton {
+
+    private volatile static DCLSingleton instance = null;
+
+    private DCLSingleton() {}
+
+    public static DCLSingleton getInstance() {
+        if (instance == null) {
+            synchronized (DCLSingleton.class) {
+                if (instance == null) {
+                    instance = new DCLSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+~~~
 
 ## 命令模式
 
